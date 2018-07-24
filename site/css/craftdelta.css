@@ -10,6 +10,11 @@
 /*!
  * CraftDelta Customizations
  */
+ /* General & Nav */
+.navbar {
+ 	z-index: 10;
+ 	justify-content: flex-start;
+ }
 .text-primary {
 	color: #4CAF50!important;
 }
@@ -19,12 +24,157 @@
 	padding-left: 34px;
 }
 
+button.navbar-toggler {
+	border: none;
+	margin-left: -13px;
+}
+button.navbar-toggler:hover,
+button.navbar-toggler:focus,
+button.navbar-toggler:active {
+	outline: 0px none transparent;
+}
+
+.navbar-color-switch {
+	position: absolute;
+    right: 28px;
+    top: 0px;
+}
+
+/* Main View */
+.trading-cont {
+    position: relative;
+    top: 0;
+    height: 100%;
+}
+
+.form-group {
+	margin-bottom: 0.35rem;
+}
+
+.vertical-split:last-child>div:first-child,
+.vertical-split:last-child>div:last-child {
+	height: 50%;
+}
+
+/* MQs */
+@media (max-width: 767px) {
+	.navbar-nav.navbar-select-token .dropdown-menu {
+		position: absolute;
+		left: auto;
+		right: 0;
+	}
+
+	.trading-cont {
+		display: block;
+		padding-top: 0;
+	}
+	.trading-cont>div,
+	.trading-cont>div:nth-child(3) {
+		width:100%;
+		padding-right: 0;
+		margin-top: 8px;
+	}
+
+	.component {
+		max-height: 70vh;
+	}
+	#chartPrice>div:last-child {
+		height: 50vh;
+	}
+	.component .component-header {
+		cursor: pointer;
+	}
+	.component .component-header:after {
+		content: '▲';
+		text-align: right;
+		float: right;
+		cursor: pointer;
+	}
+	.component.collapsed .component-header:after {
+		content: '▼';
+	}
+	.component.collapsed.component-full>div.component-header {
+		padding-bottom: 8px;
+	}
+	.component.collapsed .component-header,
+	.component.collapsed .component-tabs {
+		margin-bottom: 0;
+	}
+	.component.collapsed .component-tabs,
+	.component.collapsed .tab-content,
+	.component.collapsed #balance,
+	.component.collapsed #orders,
+	.component.collapsed #chartPrice {
+		height: 0;
+	}
+
+	
+
+	
+}
+
+@media (min-width: 768px) {
+	#accounts {
+		position: absolute;
+    	right: 28px;
+    	top: 0px;
+	}
+	.navbar-expand-md .navbar-nav #accounts .nav-link {
+		padding-right: 0.8rem;
+	}
+	.navbar-color-switch {
+    	right: 150px;
+	}
+	.navbar-expand-md .navbar-collapse {
+		width: 100%;
+	}
+
+	.trading-cont {
+	    height: calc(100vh - 80px);
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1090px) {
+	.navbar-expand-md .navbar-nav .nav-link {
+    	padding-right: 0.8rem;
+    	padding-left: 0.2rem;
+	}
+	.nav-link i {
+	    margin-right: .1rem;
+	}
+
+	.trading-cont>div:nth-child(1) {
+		width:33%;
+	}
+}
+
+@media (min-width: 1091px) {
+	.navbar-expand-md .navbar-collapse .navbar-nav .nav-link {
+    	padding-right: 2.3rem;
+    	padding-left: 0.2rem;
+	}
+}
+
+/* Misc */
 .gitter-open-chat-button,
 .gitter-chat-embed {
 	display: none;
 }
 
+.alertify .ajs-dialog {
+	min-width: 280px !important;
+	max-width: 100%;
+	width: 700px;
+}
+
+.modal-body img {
+	max-width: 100%;
+}
+
+
+/* Colors */
 a,
+.navbar-light button.navbar-toggler,
 .navbar-light .navbar-nav .show>.nav-link {
 	color: #4CAF50;
 }
@@ -32,6 +182,19 @@ a:hover, a:active, a:focus {
 	color: #43a047;
 }
 
-.navbar-light .navbar-nav .show>.nav-link {
+.navbar-light .navbar-nav .show>.nav-link,
+.component-tabs .nav-link.active {
 	border-color: #4CAF50;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: #4CAF50;
+}
+
+/* Overrides */
+@media (min-width: 768px) {
+	.navbar-expand-md {
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
 }

@@ -14,16 +14,18 @@
 <body class="dark">
 
   <nav class="navbar navbar-light navbar-expand-md">
-    <a class="navbar-brand" href="/">
-      Craft<span class="text-primary">Delta</span>
-    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
       aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="fa fa-bars" aria-hidden="true"></i>
     </button>
-    <ul class="navbar-nav navbar-right">
+    <a class="navbar-brand" href="/craftdelta">
+      Craft<span class="text-primary">Delta</span>
+    </a>
+
+    <ul class="navbar-nav navbar-select-token">
       <li class="nav-item dropdown" id="tokensDropdown"></li>
-      <li class="nav-divider"></li>
+    </ul>
+    <ul class="navbar-nav navbar-color-switch">
       <li class="theme-selector nav-item">
         <a class="nav-link" href="javascript:;" onclick="document.querySelector('body').classList.remove('light'); document.querySelector('body').classList.add('dark');">
           <i class="fa fa-square" aria-hidden="true"></i>
@@ -34,28 +36,24 @@
       </li>
     </ul>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-left">
+        <li class="nav-item dropdown" id="accounts"></li>
         <li class="nav-item dropdown" id="helpDropdown"></li>
         <li class="nav-item dropdown" id="tokenGuidesDropdown"></li>
         <li class="nav-item dropdown" id="connection"></li>
         <li class="nav-item dropdown" id="languages"></li>
         <li class="nav-item">
-          <a class="nav-link" href="/create-token"><i class="fa fa-magic"></i> Create your Token</a>
+          <a class="nav-link" href="/"><i class="fa fa-magic"></i> Create your Token</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="https://www.coinbase.com/join/5a4fe76e49d3f302a1111321" target="_blank" rel="noopener"><i class="fa fa-credit-card"></i> Buy ETH</a>
         </li>
-        <li class="nav-item dropdown" id="accounts"></li>
       </ul>
     </div>
   </nav>
 
   <div class="trading-cont">
     <div class="vertical-split">
-      <div class="component">
-        <div class="component-header trn">balance</div>
-        <div id="balance"></div>
-      </div>
       <div class="component">
         <div class="component-header trn">buy_sell</div>
         <div class="component-tabs nav-header">
@@ -73,6 +71,10 @@
           <div role="tabpanel" class="tab-pane" id="sell"></div>
         </div>
       </div>
+      <div class="component">
+        <div class="component-header trn">balance</div>
+        <div id="balance"></div>
+      </div>
     </div>
     <div class="vertical">
       <div class="component component-full">
@@ -81,7 +83,7 @@
       </div>
     </div>
     <div class="vertical-split">
-      <div class="component">
+      <div class="component nocol">
         <div class="component-header trn">price_chart</div>
         <div id="chartPrice"></div>
       </div>
@@ -125,7 +127,7 @@
           <div role="tabpanel" class="tab-pane" id="volume"></div>
         </div>
       </div>
-      <div class="component">
+      <div class="component nocol">
         <div class="component-header">
           <span class="trn">updates</span>
         </div>
@@ -142,7 +144,7 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="important">
             <div>
-              <p class="text-danger">Notices</p>
+              <p class="text-primary">Notices</p>
               <p>
                 The only official URL for EtherDelta is https://etherdelta.com. Bookmark it once and use the bookmark.
               </p>
@@ -154,7 +156,7 @@
                 The only official representatives in the chat room are ETHERDELTAZACK_TWITTER, ETHERDELTAREP1_TWITTER, ETHERDELTAREP2_TWITTER,
                 ETHERDELTAREP3_TWITTER, ETHERDELTAREP4_TWITTER, and ETHERDELTAUX_TWITTER.
               </p>
-              <p class="text-danger">Disclaimer</p>
+              <p class="text-primary">Disclaimer</p>
               <p>
                 EtherDelta is a decentralized trading platform that lets you trade Ether and Ethereum-based tokens directly with other users.
                 You are responsible for your own account, funds, and private keys. You are responsible for your own
@@ -198,6 +200,34 @@
   </script>
 
   <script type="text/javascript" src="/craftdelta/site/js/dependencies.js"></script>
+  <script type="text/javascript">
+    function initListeners() {
+      // close mobile nav on content click
+      $('#main_content').on('click', function() {
+        if ($('.navbar-toggler').attr('aria-expanded') == 'true') {
+          $('.navbar-toggler').click();
+        }
+      });
+
+      // collapse components on mobile
+      $('.component-header').on('click', function(ev) {
+        var $component = $(ev.target).parent('.component');
+        if ($component) {
+          if ($component.hasClass('collapsed')) {
+            $component.removeClass('collapsed');
+          } else {
+            $component.addClass('collapsed');
+          }
+        }
+      });
+      // collapse after loading
+      $('.component').not('.nocol').addClass('collapsed');
+    }
+    // gets called after order book has been rendered
+    window.orderbookCallback = function() {
+      setTimeout(initListeners, 250);
+    }
+  </script>
   <script type="text/javascript" src="/craftdelta/site/js/main.unminified.js"></script>
 </body>
 
