@@ -13,3 +13,25 @@
 .text-primary {
 	color: #4CAF50!important;
 }
+.navbar-brand {
+	background-image: url('/icons/favicon-96x96.png');
+	background-size: 24px 24px;
+	padding-left: 34px;
+}
+
+.gitter-open-chat-button,
+.gitter-chat-embed {
+	display: none;
+}
+
+a,
+.navbar-light .navbar-nav .show>.nav-link {
+	color: #4CAF50;
+}
+a:hover, a:active, a:focus {
+	color: #43a047;
+}
+
+.navbar-light .navbar-nav .show>.nav-link {
+	border-color: #4CAF50;
+}
