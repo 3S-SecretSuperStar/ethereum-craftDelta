@@ -203,7 +203,7 @@
   <script type="text/javascript">
     function initListeners() {
       // close mobile nav on content click
-      $('#main_content').on('click', function() {
+      $('.vertical, .vertical-split').on('click', function() {
         if ($('.navbar-toggler').attr('aria-expanded') == 'true') {
           $('.navbar-toggler').click();
         }
