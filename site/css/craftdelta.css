@@ -40,6 +40,15 @@ button.navbar-toggler:active {
     top: 0px;
 }
 
+.token-fullname {
+	padding-left: 4px;
+    font-size: 0.85rem;
+}
+
+.token-symbol {
+	color: rgba(0,0,0,.7);
+}
+
 /* Main View */
 .trading-cont {
     position: relative;
@@ -64,10 +73,15 @@ button.navbar-toggler:active {
 		right:0;
 		top:0;
 	}
+	#tokensDropdown {
+		position:static;
+	}
 	.navbar-nav.navbar-select-token .dropdown-menu {
 		position: absolute;
-		left: auto;
-		right: 0;
+	    left: 0;
+	    top: 38px;
+	    width: 100%;
+	    overflow-x: hidden;
 	}
 
 	.trading-cont {
